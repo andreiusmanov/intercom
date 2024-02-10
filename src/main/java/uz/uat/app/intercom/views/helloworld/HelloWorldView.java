@@ -1,4 +1,4 @@
-package uz.uat.app.views.helloworld;
+package uz.uat.app.intercom.views.helloworld;
 
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
@@ -8,7 +8,8 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
-import uz.uat.app.views.MainLayout;
+
+import uz.uat.app.intercom.views.MainLayout;
 
 @PageTitle("Hello World")
 @Route(value = "hello", layout = MainLayout.class)

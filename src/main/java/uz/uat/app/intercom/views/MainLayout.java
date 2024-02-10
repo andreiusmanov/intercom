@@ -1,4 +1,4 @@
-package uz.uat.app.views;
+package uz.uat.app.intercom.views;
 
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
@@ -11,9 +11,11 @@ import com.vaadin.flow.component.sidenav.SideNav;
 import com.vaadin.flow.component.sidenav.SideNavItem;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.theme.lumo.LumoUtility;
+
+import uz.uat.app.intercom.views.about.AboutView;
+import uz.uat.app.intercom.views.helloworld.HelloWorldView;
+
 import org.vaadin.lineawesome.LineAwesomeIcon;
-import uz.uat.app.views.about.AboutView;
-import uz.uat.app.views.helloworld.HelloWorldView;
 
 /**
  * The main view is a top-level placeholder for other views.
