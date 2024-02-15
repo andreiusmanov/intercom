@@ -1,15 +1,11 @@
 package uz.uat.app.intercom.views.components;
 
-import com.vaadin.flow.component.accordion.Accordion;
-import com.vaadin.flow.component.accordion.AccordionPanel;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
-public class ChatPanel extends Accordion{
+public class ChatPanel extends VerticalLayout{
 
 
 public ChatPanel(){
-    add(new AccordionPanel("All Chats"));
-    add(new AccordionPanel("Recent Chats"));
-    add(new AccordionPanel("Info Chats"));
 }
 
 

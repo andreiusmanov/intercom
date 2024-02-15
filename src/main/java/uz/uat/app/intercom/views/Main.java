@@ -8,6 +8,8 @@ import com.vaadin.flow.component.menubar.MenuBar;
 import com.vaadin.flow.component.menubar.MenuBarVariant;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 
+import uz.uat.app.intercom.views.components.ChatPanel;
+
 public class Main extends AppLayout {
     private H2 viewTitle;
     private MenuBar menu;
@@ -24,9 +26,12 @@ public class Main extends AppLayout {
     }
 
     private void addDrawerContent() {
+        ChatPanel panel = new ChatPanel();
+        addToDrawer(panel);
         // TODO Auto-generated method stub
         // throw new UnsupportedOperationException("Unimplemented method
         // 'decorateDrawer'");
+        setPrimarySection(Section.NAVBAR);
     }
 
     private void addHeaderContent() {
