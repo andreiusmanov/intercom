@@ -9,11 +9,11 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 
-import uz.uat.app.intercom.views.Main;
+import uz.uat.app.intercom.views.MainAddLayout;
 
 @PageTitle("UAT Интерком")
-@Route(value = "messages-board", layout = Main.class)
-@RouteAlias(value = "", layout = Main.class)
+@Route(value = "messages-board", layout = MainAddLayout.class)
+@RouteAlias(value = "", layout = MainAddLayout.class)
 public class MessagesView extends Div implements AfterNavigationObserver{
 
     public MessagesView(){

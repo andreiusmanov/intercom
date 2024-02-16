@@ -7,10 +7,10 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
-import uz.uat.app.intercom.views.Main;
+import uz.uat.app.intercom.views.MainAddLayout;
 
 @PageTitle(value = "Интерком UAT")
-@Route(value = "messages", layout = Main.class)
+@Route(value = "messages", layout = MainAddLayout.class)
 public class MessagesPanel extends VerticalLayout {
 
     private MenuBar menu;
