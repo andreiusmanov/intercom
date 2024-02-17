@@ -14,7 +14,7 @@ import com.vaadin.flow.router.Route;
 
 import uz.uat.app.intercom.model.entity.Chat;
 import uz.uat.app.intercom.model.entity.ChatService;
-import uz.uat.app.intercom.model.entity.chats.ChatTypes;
+import uz.uat.app.intercom.model.entity.chats.ChanelTypes;
 import uz.uat.app.intercom.views.SettingsLayout;
 
 @PageTitle(value = "Редактирование чатов")
@@ -54,7 +54,7 @@ public class ChatsView extends VerticalLayout {
         crud.getCrudFormFactory().setVisibleProperties("name", "type", "image", "tags");
         crud.getCrudFormFactory().setFieldCaptions("Наименование", "Тип", "Аватар", "Тэги");
 
-        crud.getCrudFormFactory().setFieldProvider("type", combo -> new ComboBox<>("Тип", ChatTypes.toList()));
+        crud.getCrudFormFactory().setFieldProvider("type", combo -> new ComboBox<>("Тип", ChanelTypes.toList()));
 
     }
 

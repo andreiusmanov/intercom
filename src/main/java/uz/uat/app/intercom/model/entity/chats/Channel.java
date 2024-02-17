@@ -16,6 +16,7 @@ public class Channel {
     private String id;
     @ArangoId
     private String arangoId;
+    private String image;
     private String name;
     private LocalDate startDate;
     private String status;

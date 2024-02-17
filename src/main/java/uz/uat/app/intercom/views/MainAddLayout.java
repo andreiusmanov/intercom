@@ -14,7 +14,7 @@ import com.vaadin.flow.theme.lumo.LumoUtility;
 
 import uz.uat.app.intercom.model.entity.Chat;
 import uz.uat.app.intercom.model.entity.ChatService;
-import uz.uat.app.intercom.model.entity.chats.ChatTypes;
+import uz.uat.app.intercom.model.entity.chats.ChanelTypes;
 import uz.uat.app.intercom.views.components.ChatPanel;
 import uz.uat.app.intercom.views.components.ChatsView;
 
@@ -36,7 +36,7 @@ public class MainAddLayout extends AppLayout {
 
     private void addDrawerContent() {
         chatPanel = new ChatPanel();
-        chatPanel.populateChats(findChats(ChatTypes.DEPT_CHAT));
+        chatPanel.populateChats(findChats(ChanelTypes.DEPT));
         addToDrawer(chatPanel);
         // TODO Auto-generated method stub
         // throw new UnsupportedOperationException("Unimplemented method
@@ -58,13 +58,13 @@ public class MainAddLayout extends AppLayout {
         this.menu = new MenuBar();
         menu.addThemeVariants(MenuBarVariant.LUMO_TERTIARY);
         MenuItem botItem = menu.addItem("bot");
-        botItem.addClickListener(click -> chatPanel.populateChats(findChats(ChatTypes.ROBOT_CHAT)));
+        botItem.addClickListener(click -> chatPanel.populateChats(findChats(ChanelTypes.ROBOT)));
         MenuItem infoItem = menu.addItem("info");
-        infoItem.addClickListener(click -> chatPanel.populateChats(findChats(ChatTypes.INFO_CHAT)));
+        infoItem.addClickListener(click -> chatPanel.populateChats(findChats(ChanelTypes.INFO)));
         MenuItem deptItem = menu.addItem("department");
-        deptItem.addClickListener(click -> chatPanel.populateChats(findChats(ChatTypes.DEPT_CHAT)));
+        deptItem.addClickListener(click -> chatPanel.populateChats(findChats(ChanelTypes.DEPT)));
         MenuItem commonItem = menu.addItem("common");
-        commonItem.addClickListener(click -> chatPanel.populateChats(findChats(ChatTypes.USER_CHAT)));
+        commonItem.addClickListener(click -> chatPanel.populateChats(findChats(ChanelTypes.USER)));
     }
 
     private void menu2() {

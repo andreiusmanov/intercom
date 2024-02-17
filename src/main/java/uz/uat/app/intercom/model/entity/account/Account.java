@@ -21,5 +21,6 @@ private String position;
 private Department department; 
 private String login;
 private String password;
+private String macAddress;
 
 }
