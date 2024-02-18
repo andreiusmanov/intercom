@@ -13,7 +13,7 @@ import uz.uat.app.intercom.views.MainLayout;
 
 @PageTitle("Hello World")
 @Route(value = "hello", layout = MainLayout.class)
-@RouteAlias(value = "", layout = MainLayout.class)
+@RouteAlias(value = "hello", layout = MainLayout.class)
 public class HelloWorldView extends HorizontalLayout {
 
     private TextField name;
