@@ -9,11 +9,14 @@ import lombok.AllArgsConstructor;
 import uz.uat.app.intercom.model.entity.account.Account;
 import uz.uat.app.intercom.model.entity.account.AccountRepository;
 import uz.uat.app.intercom.model.entity.account.Department;
+import uz.uat.app.intercom.model.entity.account.DepartmentRepository;
 
 @Service
 @AllArgsConstructor
 public class AccountService {
     private AccountRepository accountRepo;
+    private DepartmentRepository departmentRepo;
+
 
     public Account saveAccount(Account account) {
         return accountRepo.save(account);
@@ -31,4 +34,11 @@ public class AccountService {
         return accountRepo.findByDepartment(department.getArangoId());
     }
    
+    public Account login(String login, String password){
+        return accountRepo.authenticate(login, password);
+    }
+
+    public List<Department> findAllDepartments(){
+        return StreamSupport.stream(departmentRepo.findAll().spliterator(), false).toList();
+    }
 }
