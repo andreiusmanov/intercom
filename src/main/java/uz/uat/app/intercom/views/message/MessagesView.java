@@ -13,7 +13,7 @@ import uz.uat.app.intercom.views.MainAddLayout;
 
 @PageTitle("UAT Интерком")
 @Route(value = "messages-board", layout = MainAddLayout.class)
-@RouteAlias(value = "", layout = MainAddLayout.class)
+//@RouteAlias(value = "message", layout = MainAddLayout.class)
 public class MessagesView extends Div implements AfterNavigationObserver{
 
     public MessagesView(){
