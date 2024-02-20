@@ -15,6 +15,7 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 
 import uz.uat.app.intercom.views.about.AboutView;
+import uz.uat.app.intercom.views.account.AccountView;
 import uz.uat.app.intercom.views.department.DepartmentView;
 
 /**
@@ -54,6 +55,7 @@ public class AdminLayout extends AppLayout {
         SideNav nav = new SideNav();
 
         nav.addItem(new SideNavItem("Подразделения", DepartmentView.class, LineAwesomeIcon.DESKPRO.create()));
+        nav.addItem(new SideNavItem("Сотрудники", AccountView.class, LineAwesomeIcon.ANGRY.create()));
         nav.addItem(new SideNavItem("About", AboutView.class, LineAwesomeIcon.FILE.create()));
 
         return nav;

@@ -1,10 +1,12 @@
 package uz.uat.app.intercom.views.account;
 
+import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
-import com.vaadin.flow.component.orderedlayout.FlexComponent;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.Notification.Position;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
@@ -16,10 +18,11 @@ import uz.uat.app.intercom.model.entity.account.Account;
 import uz.uat.app.intercom.model.entity.account.Department;
 import uz.uat.app.intercom.utils.UIData;
 import uz.uat.app.intercom.utils.UIKeys;
+import uz.uat.app.intercom.views.login.LoginView;
 
 @PageTitle("Пользователь")
-@Route(value = "intercom/account2")
-public class AccountView2 extends VerticalLayout {
+@Route(value = "intercom/register")
+public class RegisterDialog extends Dialog {
     private AccountService service;
     private FormLayout form;
     private Account account = new Account();
@@ -31,13 +34,49 @@ public class AccountView2 extends VerticalLayout {
     private PasswordField password = new PasswordField("Пароль");
     private TextField position = new TextField("Должность");
     private ComboBox<Department> department = new ComboBox<>("Отдел");
+    private TextField telephone = new TextField("Служебн. тел");
+    private Button register;
+    private Button cancel;
 
-    public AccountView2(AccountService service) {
+    public RegisterDialog(AccountService service) {
         this.service = service;
         this.account = (Account) UIData.getAttribute(UIKeys.ACCOUNT);
         form();
         binder();
+        buttons();
+        setHeaderTitle("Регистрация нового пользователя");
+        getFooter().add(register, cancel);
         add(form);
+    }
+
+    private void buttons() {
+        this.register = new Button("Сохранить");
+
+        try {
+            Account a = binder.getBean();
+            service.saveAccount(a);
+            Notification.show("Данные пользователя " + a.getLogin() + " сохранены", 5, Position.MIDDLE);
+            UI.getCurrent().navigate(LoginView.class);
+        } catch (Exception e) {
+            Notification.show("Запись данных отменена", 5, Position.MIDDLE);
+            UI.getCurrent().navigate(LoginView.class);
+        }
+
+        this.register.addClickListener(click -> {
+            try {
+                service.saveAccount(binder.getBean());
+                this.close();
+                UI.getCurrent().navigate(LoginView.class);
+            } catch (Exception e) {
+            }
+
+        });
+        this.cancel = new Button("Отменить");
+        this.cancel.addClickListener(click -> {
+            this.close();
+            UI.getCurrent().navigate(LoginView.class);
+        });
+
     }
 
     private void binder() {
@@ -48,8 +87,6 @@ public class AccountView2 extends VerticalLayout {
 
     private void form() {
         this.form = new FormLayout();
-        setAlignItems(FlexComponent.Alignment.CENTER);
-        setJustifyContentMode(JustifyContentMode.EVENLY);
         form.setSizeUndefined();
         name = new TextField("Имя");
         surname = new TextField("Фамилия");
@@ -57,11 +94,11 @@ public class AccountView2 extends VerticalLayout {
         login = new TextField("Логин");
         password = new PasswordField("Пароль");
         position = new TextField("Должность");
+        telephone = new TextField("Служебн. тел");
         department = new ComboBox<>("Отдел");
         department.setItems(service.findAllDepartments());
         department.setItemLabelGenerator((dept) -> dept.getCode() + " - " + dept.getShortName());
-        form.setColspan(department, 2);
-        form.add(name, surname, patronymic, position, department, login, password);
+        form.add(surname, name, patronymic, position, department, telephone, login, password);
     }
 
 }

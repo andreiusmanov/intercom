@@ -46,11 +46,6 @@ public class DepartmentView extends VerticalLayout {
         crud.getCrudFormFactory().setFieldType("name", TextArea.class);
 
         CrudFormFactory<Department> c = crud.getCrudFormFactory();
-
-    c.buildNewForm(CrudOperation.ADD, new Department(), false, null, null);
-        
-    
-        
     }
 
 }

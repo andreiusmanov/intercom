@@ -2,6 +2,7 @@ package uz.uat.app.intercom.views.account;
 
 import org.vaadin.crudui.crud.impl.GridCrud;
 
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
@@ -9,6 +10,7 @@ import com.vaadin.flow.router.Route;
 
 import uz.uat.app.intercom.controller.AccountService;
 import uz.uat.app.intercom.model.entity.account.Account;
+import uz.uat.app.intercom.model.entity.account.Department;
 import uz.uat.app.intercom.views.AdminLayout;
 
 @PageTitle("Пользователи")
@@ -32,16 +34,25 @@ public class AccountView extends VerticalLayout {
         crud.setFindAllOperation(service::findAllAccounts);
 
         Grid<Account> grid = crud.getGrid();
-        grid.setColumns("code", "shortName", "name");
-        grid.getColumnByKey("code").setHeader("Код");
-        grid.getColumnByKey("shortName").setHeader("Аббрев.");
-        grid.getColumnByKey("name").setHeader("Наименование");
+        grid.setColumns("name", "surname", "patronymic", "position", "department.shortName", "login", "password");
+        grid.getColumnByKey("name").setHeader("Имя");
+        grid.getColumnByKey("surname").setHeader("Фамилия");
+        grid.getColumnByKey("patronymic").setHeader("Отчество");
+        grid.getColumnByKey("position").setHeader("Должность");
+        grid.getColumnByKey("department.shortName").setHeader("Подразделение");
+        grid.getColumnByKey("login").setHeader("Логин");
+        grid.getColumnByKey("password").setHeader("Пароль");
 
-        crud.getCrudFormFactory().setFieldCaptions("Код", "Аббрев.", "Наименование");
-        crud.getCrudFormFactory().setVisibleProperties("code", "shortName", "name");
+        crud.getCrudFormFactory().setFieldCaptions("Имя", "Фамилия", "Отчество", "Должность", "Подразделение", "Логин",
+                "Пароль");
+        crud.getCrudFormFactory().setVisibleProperties("name", "surname", "patronymic", "position", "department",
+                "login", "password");
 
-crud.getCrudFormFactory().setFieldType(null, null);
-
+        crud.getCrudFormFactory().setFieldProvider("department", (combobox) -> {
+            ComboBox<Department> d = new ComboBox<>("Подразделение", service.findAllDepartments());
+            d.setItemLabelGenerator(item -> item.getCode() + " - " + item.getShortName());
+            return d;
+        });
 
     }
 

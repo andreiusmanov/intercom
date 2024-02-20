@@ -12,7 +12,7 @@ import uz.uat.app.intercom.controller.AccountService;
 import uz.uat.app.intercom.model.entity.account.Account;
 import uz.uat.app.intercom.utils.UIData;
 import uz.uat.app.intercom.utils.UIKeys;
-import uz.uat.app.intercom.views.account.AccountView2;
+import uz.uat.app.intercom.views.account.RegisterDialog;
 import uz.uat.app.intercom.views.department.DepartmentView;
 
 @Route("")
@@ -20,6 +20,7 @@ public class LoginView extends VerticalLayout {
     private AccountService service;
     private Button register;
     private Button admin;
+    private RegisterDialog dialog;
 
     public LoginView(AccountService service) {
         this.service = service;
@@ -41,10 +42,9 @@ public class LoginView extends VerticalLayout {
         loginForm.addLoginListener(event -> {
             if (authenticate(event.getUsername(), event.getPassword())) {
                 loginForm.setEnabled(false);
-                Notification.show("Login successful");
+                Notification.show("Авторизация пройдена");
             } else {
-                Notification.show("Incorrect email or password");
-                UI.getCurrent().navigate(AccountView2.class);
+                Notification.show("Email и/или пароль не найдены");
             }
         });
         return loginForm;
@@ -53,7 +53,9 @@ public class LoginView extends VerticalLayout {
     private void register() {
         this.register = new Button("Регистрация");
         register.addClickListener(click -> {
-            UI.getCurrent().navigate(AccountView2.class);
+            RegisterDialog rv = new RegisterDialog(service);
+            rv.setCloseOnEsc(true);
+            rv.open();
         });
     }
 
