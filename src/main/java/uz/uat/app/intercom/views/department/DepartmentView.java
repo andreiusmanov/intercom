@@ -1,17 +1,21 @@
 package uz.uat.app.intercom.views.department;
 
+import org.vaadin.crudui.crud.CrudOperation;
 import org.vaadin.crudui.crud.impl.GridCrud;
+import org.vaadin.crudui.form.CrudFormFactory;
 
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
 import uz.uat.app.intercom.controller.DepartmentService;
 import uz.uat.app.intercom.model.entity.account.Department;
+import uz.uat.app.intercom.views.AdminLayout;
 
 @PageTitle("Отделы")
-@Route(value = "intercom/departments")
+@Route(value = "intercom/departments", layout = AdminLayout.class)
 public class DepartmentView extends VerticalLayout {
 
     private DepartmentService service;
@@ -39,6 +43,14 @@ public class DepartmentView extends VerticalLayout {
         crud.getCrudFormFactory().setFieldCaptions("Код", "Аббрев.", "Наименование");
         crud.getCrudFormFactory().setVisibleProperties("code", "shortName", "name");
 
+        crud.getCrudFormFactory().setFieldType("name", TextArea.class);
+
+        CrudFormFactory<Department> c = crud.getCrudFormFactory();
+
+    c.buildNewForm(CrudOperation.ADD, new Department(), false, null, null);
+        
+    
+        
     }
 
 }

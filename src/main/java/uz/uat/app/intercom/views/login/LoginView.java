@@ -12,18 +12,28 @@ import uz.uat.app.intercom.controller.AccountService;
 import uz.uat.app.intercom.model.entity.account.Account;
 import uz.uat.app.intercom.utils.UIData;
 import uz.uat.app.intercom.utils.UIKeys;
-import uz.uat.app.intercom.views.account.AccountView;
+import uz.uat.app.intercom.views.account.AccountView2;
+import uz.uat.app.intercom.views.department.DepartmentView;
 
 @Route("")
 public class LoginView extends VerticalLayout {
     private AccountService service;
     private Button register;
+    private Button admin;
 
     public LoginView(AccountService service) {
         this.service = service;
         register();
+        admin();
         setAlignItems(FlexComponent.Alignment.CENTER);
-        add(loginForm(), register);
+        add(loginForm(), register, admin);
+    }
+
+    private void admin() {
+        this.admin = new Button("Администрирование");
+        admin.addClickListener(click -> {
+            UI.getCurrent().navigate(DepartmentView.class);
+        });
     }
 
     private LoginForm loginForm() {
@@ -34,7 +44,7 @@ public class LoginView extends VerticalLayout {
                 Notification.show("Login successful");
             } else {
                 Notification.show("Incorrect email or password");
-                UI.getCurrent().navigate(AccountView.class);
+                UI.getCurrent().navigate(AccountView2.class);
             }
         });
         return loginForm;
@@ -43,7 +53,7 @@ public class LoginView extends VerticalLayout {
     private void register() {
         this.register = new Button("Регистрация");
         register.addClickListener(click -> {
-            UI.getCurrent().navigate(AccountView.class);
+            UI.getCurrent().navigate(AccountView2.class);
         });
     }
 
