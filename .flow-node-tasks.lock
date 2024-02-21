@@ -1,0 +1,2 @@
+26810
+/usr/lib/jvm/java-17-openjdk-amd64/bin/java -agentlib:jdwp=transport=dt_socket,server=n,suspend=y,address=localhost:46695 @/tmp/cp_6vhrgu8pzd77g971y59k64jwm.argfile uz.uat.app.Application

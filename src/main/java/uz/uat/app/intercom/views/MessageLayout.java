@@ -6,6 +6,8 @@ import com.vaadin.flow.component.html.Footer;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Header;
+import com.vaadin.flow.component.menubar.MenuBar;
+import com.vaadin.flow.component.menubar.MenuBarVariant;
 import com.vaadin.flow.component.orderedlayout.Scroller;
 import com.vaadin.flow.component.sidenav.SideNav;
 import com.vaadin.flow.component.sidenav.SideNavItem;
@@ -23,11 +25,21 @@ import org.vaadin.lineawesome.LineAwesomeIcon;
 public class MessageLayout extends AppLayout {
 
     private H2 viewTitle;
+    private MenuBar menu;
 
     public MessageLayout() {
-        setPrimarySection(Section.DRAWER);
+        setPrimarySection(Section.NAVBAR);
+        menu();
         addDrawerContent();
         addHeaderContent();
+    }
+
+    private void menu() {
+        this.menu = new MenuBar();
+        menu.addThemeVariants(MenuBarVariant.LUMO_TERTIARY);
+        menu.addItem("Персональные");
+        menu.addItem("Отдел");
+
     }
 
     private void addHeaderContent() {
@@ -49,8 +61,6 @@ public class MessageLayout extends AppLayout {
 
         addToDrawer(header, scroller, createFooter());
     }
-
-
 
     private SideNav createNavigation() {
         SideNav nav = new SideNav();
