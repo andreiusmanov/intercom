@@ -40,7 +40,6 @@ public class RegisterDialog extends Dialog {
 
     public RegisterDialog(AccountService service) {
         this.service = service;
-        this.account = (Account) UIData.getAttribute(UIKeys.ACCOUNT);
         form();
         binder();
         buttons();
@@ -52,24 +51,15 @@ public class RegisterDialog extends Dialog {
     private void buttons() {
         this.register = new Button("Сохранить");
 
-        try {
-            Account a = binder.getBean();
-            service.saveAccount(a);
-            Notification.show("Данные пользователя " + a.getLogin() + " сохранены", 5, Position.MIDDLE);
-            UI.getCurrent().navigate(LoginView.class);
-        } catch (Exception e) {
-            Notification.show("Запись данных отменена", 5, Position.MIDDLE);
-            UI.getCurrent().navigate(LoginView.class);
-        }
-
         this.register.addClickListener(click -> {
             try {
-                service.saveAccount(binder.getBean());
+                Account a = binder.getBean();
+                service.saveAccount(a);
+                Notification.show("Данные пользователя " + a.getLogin() + " сохранены", 5, Position.MIDDLE);
                 this.close();
                 UI.getCurrent().navigate(LoginView.class);
             } catch (Exception e) {
             }
-
         });
         this.cancel = new Button("Отменить");
         this.cancel.addClickListener(click -> {
