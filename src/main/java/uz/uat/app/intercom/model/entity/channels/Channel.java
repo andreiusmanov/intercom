@@ -10,7 +10,7 @@ import com.arangodb.springframework.annotation.Document;
 import lombok.Data;
 
 @Data
-@Document(collection = "chanels")
+@Document(collection = "channels")
 public class Channel {
     @Id
     private String id;
