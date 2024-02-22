@@ -14,10 +14,8 @@ import uz.uat.app.intercom.utils.UIData;
 import uz.uat.app.intercom.utils.UIKeys;
 import uz.uat.app.intercom.views.account.RegisterDialog;
 import uz.uat.app.intercom.views.department.DepartmentView;
-import uz.uat.app.intercom.views.message.MessagesView;
-import uz.uat.app.intercom.views.message.SummaryView;
 
-@Route("")
+@Route("login")
 public class LoginView extends VerticalLayout {
     private AccountService service;
     private Button register;
@@ -45,7 +43,7 @@ public class LoginView extends VerticalLayout {
             if (authenticate(event.getUsername(), event.getPassword())) {
                 loginForm.setEnabled(false);
                 UI.getCurrent().navigate(LoginView.class);
-                
+
                 Notification.show("Авторизация пройдена");
             } else {
                 Notification.show("Email и/или пароль не найдены");

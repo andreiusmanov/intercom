@@ -21,8 +21,7 @@ public class MessagePanel extends Div {
     private Grid<MessageComponent> grid;
     private TextArea messageArea;
 
-    public MessagePanel(MessageService service) {
-        this.service = service;
+    public MessagePanel() {
         this.channel = (Channel) UIData.getAttribute(UIKeys.CHANNEL);
         this.account = (Account) UIData.getAttribute(UIKeys.ACCOUNT);
         grid();
@@ -41,7 +40,7 @@ public class MessagePanel extends Div {
     }
 
     private List<Message> getMessages(Channel channel) {
-        return service.findMessagesByChannel(channel);
+        return  new ArrayList<Message>(0);// service.findMessagesByChannel(channel);
     }
 
     private Message newMessage(String draft) {
