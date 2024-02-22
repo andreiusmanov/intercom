@@ -19,7 +19,7 @@ public class Message {
     @ArangoId
     private String arangoId;
     private String message;
-    private Channel chanel;
+    private Channel channel;
     private Account account;
     private LocalDateTime created;
     

@@ -44,7 +44,8 @@ public class LoginView extends VerticalLayout {
         loginForm.addLoginListener(event -> {
             if (authenticate(event.getUsername(), event.getPassword())) {
                 loginForm.setEnabled(false);
-                UI.getCurrent().navigate(SummaryView.class);
+                UI.getCurrent().navigate(LoginView.class);
+                
                 Notification.show("Авторизация пройдена");
             } else {
                 Notification.show("Email и/или пароль не найдены");

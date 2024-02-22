@@ -6,6 +6,7 @@ import java.util.stream.StreamSupport;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
+import uz.uat.app.intercom.model.entity.account.Account;
 import uz.uat.app.intercom.model.entity.channels.Channel;
 import uz.uat.app.intercom.model.entity.messages.Draft;
 import uz.uat.app.intercom.model.entity.messages.DraftRepository;
@@ -48,6 +49,14 @@ public class MessageService {
 
     public List<Draft> findDraftsByChannel(Channel channel) {
         return StreamSupport.stream(draftRepo.findByChannel(channel.getArangoId()).spliterator(), false).toList();
+    }
+
+    public Message newMessage(Channel channel, Account account, String text) {
+        Message message = new Message();
+        message.setChannel(channel);
+        message.setAccount(account);
+        message.setMessage(text);
+        return message;
     }
 
 }
