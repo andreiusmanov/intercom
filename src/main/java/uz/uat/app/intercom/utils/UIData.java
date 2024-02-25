@@ -1,5 +1,6 @@
 package uz.uat.app.intercom.utils;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.server.VaadinSession;
 
 public class UIData {

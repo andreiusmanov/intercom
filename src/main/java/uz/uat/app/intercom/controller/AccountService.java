@@ -33,7 +33,11 @@ public class AccountService {
     public List<Account> findByDepartment(Department department){
         return accountRepo.findByDepartment(department.getArangoId());
     }
-   
+ 
+    public Account findById(String id){
+        return accountRepo.findById(id).get();
+    }
+
     public Account login(String login, String password){
         return accountRepo.authenticate(login, password);
     }
