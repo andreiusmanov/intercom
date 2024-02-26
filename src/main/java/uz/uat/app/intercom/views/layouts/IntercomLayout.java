@@ -23,13 +23,13 @@ public class IntercomLayout extends AppLayout {
 
     private H2 viewTitle;
     private ChannelService channelService;
-    private AccountService accountService;
+    //private AccountService accountService;
     private Account account;
 
     public IntercomLayout(ChannelService channelService, AccountService accountService) {
         this.channelService = channelService;
-        this.accountService = accountService;
-        this.account = accountService.findById("accounts/76505400");
+      //  this.accountService = accountService;
+        this.account = accountService.findById("accounts/1474945");
         UIData.setAttribute(UIKeys.ACCOUNT, account);
         setPrimarySection(Section.DRAWER);
         addDrawerContent();
@@ -43,7 +43,7 @@ public class IntercomLayout extends AppLayout {
 
         viewTitle = new H2();
         viewTitle.addClassNames(LumoUtility.FontSize.LARGE, LumoUtility.Margin.NONE);
-
+       
         addToNavbar(true, toggle, viewTitle);
     }
 
