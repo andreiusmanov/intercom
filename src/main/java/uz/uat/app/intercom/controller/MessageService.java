@@ -1,5 +1,6 @@
 package uz.uat.app.intercom.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.StreamSupport;
 
@@ -51,11 +52,12 @@ public class MessageService {
         return StreamSupport.stream(draftRepo.findByChannel(channel.getArangoId()).spliterator(), false).toList();
     }
 
-    public Message newMessage(Channel channel, Account account, String text) {
+    public Message newMessage(Channel channel, Account author, String text, LocalDateTime created) {
         Message message = new Message();
         message.setChannel(channel);
-        message.setAccount(account);
+        message.setAuthor(author);
         message.setMessage(text);
+        message.setCreated(created);
         return message;
     }
 

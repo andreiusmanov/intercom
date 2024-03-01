@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 
 import com.arangodb.springframework.annotation.ArangoId;
 import com.arangodb.springframework.annotation.Document;
+import com.arangodb.springframework.annotation.Ref;
 
 import lombok.Data;
 import uz.uat.app.intercom.model.entity.account.Account;
@@ -20,7 +21,8 @@ public class Message {
     private String arangoId;
     private String message;
     private Channel channel;
-    private Account account;
+    @Ref(lazy = false)
+    private Account author;
     private LocalDateTime created;
     
 }
