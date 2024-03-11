@@ -1,4 +1,4 @@
-package uz.uat.app.intercom.views.layouts;
+package uz.uat.app.intercom.views.panels;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,12 +6,13 @@ import java.util.List;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 import uz.uat.app.intercom.model.entity.channels.Channel;
+import uz.uat.app.intercom.views.layouts.ChannelComponent;
 
-public class ChannelsView extends VerticalLayout {
+public class ChannelsPanel extends VerticalLayout {
     private List<ChannelComponent> channelComponents;
-    private MessagesView messagesView;
+    private MessagesPanel messagesView;
 
-    public ChannelsView(MessagesView messagesView) {
+    public ChannelsPanel(MessagesPanel messagesView) {
         this.channelComponents = new ArrayList<ChannelComponent>(0);
         this.messagesView = messagesView;
     }

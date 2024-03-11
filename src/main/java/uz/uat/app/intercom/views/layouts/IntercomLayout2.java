@@ -4,13 +4,10 @@ import java.util.List;
 
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
-import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.Footer;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Header;
-import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.Scroller;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.theme.lumo.LumoUtility;
@@ -19,6 +16,7 @@ import uz.uat.app.intercom.controller.AccountService;
 import uz.uat.app.intercom.controller.ChannelService;
 import uz.uat.app.intercom.model.entity.account.Account;
 import uz.uat.app.intercom.model.entity.channels.Channel;
+import uz.uat.app.intercom.model.entity.controller.Controller;
 import uz.uat.app.intercom.utils.UIData;
 import uz.uat.app.intercom.utils.UIKeys;
 import uz.uat.app.intercom.views.panels.AccountPanel;
@@ -29,7 +27,7 @@ import uz.uat.app.intercom.views.panels.MessagesPanel;
 /**
  * The main view is a top-level placeholder for other views.
  */
-public class IntercomLayout extends AppLayout {
+public class IntercomLayout2 extends AppLayout {
 
     private H2 viewTitle;
     private ChannelService channelService;
@@ -38,9 +36,9 @@ public class IntercomLayout extends AppLayout {
     private MessagesPanel messagesPanel;
     private HeaderPanel headerPanel;
     private AccountPanel accountPanel;
-    private AccountAvatar avatar;
+    private Controller controller;
 
-    public IntercomLayout(ChannelService channelService, AccountService accountService) {
+    public IntercomLayout2(ChannelService channelService, AccountService accountService) {
         this.channelService = channelService;
         this.account = accountService.findById("accounts/1474945");
         UIData.setAttribute(UIKeys.ACCOUNT, account);
@@ -56,27 +54,23 @@ public class IntercomLayout extends AppLayout {
         toggle.setAriaLabel("Menu toggle");
         viewTitle = new H2();
         viewTitle.addClassNames(LumoUtility.FontSize.LARGE, LumoUtility.Margin.NONE);
-        headerPanel = new HeaderPanel();
-        // viewTitle
-        addToNavbar(true, toggle, headerPanel);
+        addToNavbar(true, toggle, viewTitle);
+    }
 
+    private void headerPanel() {
+        this.headerPanel = new HeaderPanel();
     }
 
     private void addDrawerContent() {
         H1 appName = new H1("Intercom");
-        avatar = new AccountAvatar();
         appName.addClassNames(LumoUtility.FontSize.LARGE, LumoUtility.Margin.NONE);
         Header header = new Header(appName);
-        HorizontalLayout frame = new HorizontalLayout(avatar, header);
-        frame.setAlignItems(Alignment.CENTER);
-        frame.setPadding(true);
         channelsPanel = new ChannelsPanel(messagesPanel);
         List<Channel> byAccount = channelService.findByAccount(account);
         this.channelsPanel = new ChannelsPanel(messagesPanel);
         channelsPanel.setChannelComponents(byAccount);
         Scroller scroller = new Scroller(channelsPanel);
-        addToDrawer(frame, scroller, createFooter());
-        // addToDrawer(header, scroller, createFooter());
+        addToDrawer(header, scroller, createFooter());
     }
 
     private Footer createFooter() {
